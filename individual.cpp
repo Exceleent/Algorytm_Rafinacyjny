@@ -10,7 +10,7 @@ individual::individual(embrion exembrion, individual::gen_dla_osobnika genDlaOso
 
 void individual::ustawWartoscDoSelekcji(){ ////
     for(int i = 0; i < zbior_zadan.size() ; i++) {
-        fitness += zbior_zadan[i].pobierzWartosc();
+        fitness += zbior_zadan[i].pobierzWartosc();;
     }
     fitness += koszt*kanaly;
 }
