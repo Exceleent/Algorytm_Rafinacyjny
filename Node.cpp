@@ -4,18 +4,13 @@
 
 #include "Node.h"
 
-typedef int rodzaj_zadania; //// Number zadania
-typedef std::pair<int,std::pair<int,int>> rodzaj_zasobu; /// Tutaj trzymamy koszt oraz czas
-typedef int czas_razy_koszt;
-typedef std::vector<Node> nastepniki;
-
 
 void Node::ustawZadanie(rodzaj_zadania rodzajZadania1) {
     rodzajZadania = rodzajZadania1;
 }
 
-void Node::ustawRodzajZasobu(int zasob, int cost, int time){
-    rodzajZasobu = std::pair<int,std::pair<int,int>>(zasob,std::pair<int,int>(cost,time));
+void Node::ustawRodzajZasobu(std::size_t zasob, std::size_t cost, std::size_t time){
+    rodzajZasobu = std::pair<std::size_t,std::pair<std::size_t,std::size_t>>(zasob,std::pair<std::size_t,std::size_t>(cost,time));
 }
 
 void Node::ustawWartosc(){
@@ -26,7 +21,7 @@ void Node::dodajZadanie(Node taskToAdd) {
     nastepniki1.push_back(taskToAdd);
 }
 
-czas_razy_koszt Node::pobierzWartosc(){
+Node::czas_razy_koszt Node::pobierzWartosc(){
     return czasRazyKoszt;
 }
 
@@ -34,7 +29,7 @@ int Node::pobierzRodzajZasobu(){
     return rodzajZasobu.first;
 }
 
-Node Node::pobierzNastepnik(int index) {
+Node Node::pobierzNastepnik(std::size_t index) {
     return nastepniki1[index];
 }
 

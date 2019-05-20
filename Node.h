@@ -8,9 +8,9 @@
 #include <vector>
 
 class Node {
-    typedef int rodzaj_zadania; //// Number zadania
-    typedef std::pair<int,std::pair<int,int>> rodzaj_zasobu; /// Tutaj trzymamy koszt oraz czas
-    typedef int czas_razy_koszt;
+    typedef std::size_t rodzaj_zadania; //// Number zadania
+    typedef std::pair<std::size_t,std::pair<std::size_t,std::size_t>> rodzaj_zasobu; /// Tutaj trzymamy koszt oraz czas
+    typedef std::size_t czas_razy_koszt;
     typedef std::vector<Node> nastepniki;
 
 private:
@@ -20,13 +20,13 @@ private:
     nastepniki nastepniki1;
 public:
     void ustawZadanie(rodzaj_zadania rodzajZadania1);
-    void ustawRodzajZasobu(int zasob, int cost, int time);
+    void ustawRodzajZasobu(std::size_t zasob, std::size_t cost, std::size_t time);
     void ustawWartosc();
     void dodajZadanie(Node taskToAdd);
     czas_razy_koszt pobierzWartosc();
     int pobierzRodzajZasobu();
     int pobierzIloscNastepnikow();
-    Node pobierzNastepnik(int index);
+    Node pobierzNastepnik(std::size_t index);
 };
 
 
