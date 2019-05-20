@@ -4,7 +4,7 @@
 
 #ifndef ALGORYTM_RAFINACYJNY_EMBRION_H
 #define ALGORYTM_RAFINACYJNY_EMBRION_H
-#include "individual.h"
+#include "Node.h"
 
 class embrion {
 private:

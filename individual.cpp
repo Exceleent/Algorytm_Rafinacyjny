@@ -5,8 +5,11 @@
 #include "individual.h"
 
 individual::individual(){}
-individual::individual(embrion exembrion, individual::gen_dla_osobnika genDlaOsobnika,
-                       individual::gen_dla_kanalu genDlaKanalu) {}
+
+ individual individual::createindividual(embrion exembrion, individual::gen_dla_osobnika genDlaOsobnika,
+                       individual::gen_dla_kanalu genDlaKanalu) {
+    return individual();
+}
 
 void individual::ustawWartoscDoSelekcji(){ ////
 //    for(int i = 0; i < sciezka_krytyczna.size() ; i++) {

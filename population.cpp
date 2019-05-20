@@ -13,6 +13,13 @@ void population::stworzNajlepszegoOsobnika(){
 void population::dodajOsobnika(individual individual){
     aktualnaPopulacja.push_back(individual);
 }
-individual population::zwrocNajlepszegoOsobnika() {}
-population::paraDoKrzyzowania population::selekcja() {}
-population::paraPoKrzyzowania population::krzyzowanie(population::paraDoKrzyzowania paraDoKrzyzowania1) {}
+individual population::zwrocNajlepszegoOsobnika() {
+    return individual();
+}
+population::paraDoKrzyzowania population::selekcja() {
+    return paraPoKrzyzowania(individual(),individual());
+}
+population::paraPoKrzyzowania population::krzyzowanie(population::paraDoKrzyzowania paraDoKrzyzowania1) {
+    return paraPoKrzyzowania(individual(),individual());
+
+}

@@ -24,7 +24,7 @@ public:
     void ustawWartoscDoSelekcji();  ////
     wartosc_do_selekcji pobierzWartoscDoSelekcji(); ////
     void mutacja(); //// Mutacja losujemy jakies zadanie i zamieniamy zasob
-    individual(embrion exembrion,gen_dla_osobnika genDlaOsobnika,gen_dla_kanalu genDlaKanalu);  //// Na podstawie embrionu i rodzaju genu tworzy osobnika, ustawiamy koszt kanalu wypelniamy zbior zadan
+    individual createindividual(embrion exembrion,gen_dla_osobnika genDlaOsobnika,gen_dla_kanalu genDlaKanalu);  //// Na podstawie embrionu i rodzaju genu tworzy osobnika, ustawiamy koszt kanalu wypelniamy zbior zadan
     void stworz_sciezke_krytyczna(); //// Tworzy sciezke Krytyczna
     void aktualizacja_liczby_kanalow(); ////
 };

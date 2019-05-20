@@ -29,8 +29,8 @@ public:
     void ustawWartosc();
     void dodajZadanie(Node taskToAdd);
     czas_razy_koszt pobierzWartosc();
-    int pobierzRodzajZasobu();
-    int pobierzIloscNastepnikow();
+    std::size_t pobierzRodzajZasobu();
+    std::size_t pobierzIloscNastepnikow();
     Node pobierzNastepnik(std::size_t index);
 };
 

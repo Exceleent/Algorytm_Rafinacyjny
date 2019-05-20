@@ -28,7 +28,7 @@ Node::czas_razy_koszt Node::pobierzWartosc(){
     return czasRazyKoszt;
 }
 
-int Node::pobierzRodzajZasobu(){
+std::size_t Node::pobierzRodzajZasobu(){
     return rodzajZasobu.first;
 }
 
@@ -36,6 +36,8 @@ Node Node::pobierzNastepnik(std::size_t index) {
     return nastepniki1[index];
 }
 
-int Node::pobierzIloscNastepnikow(){
+std::size_t Node::pobierzIloscNastepnikow(){
     return nastepniki1.size();
+
+
 }
