@@ -4,6 +4,9 @@
 
 #include "Node.h"
 
+void Node::dodajKrawedz(){}
+
+Node::wartosc_krawedzi Node::wyswietlKrawedzOIndexie(std::size_t index){}
 
 void Node::ustawZadanie(rodzaj_zadania rodzajZadania1) {
     rodzajZadania = rodzajZadania1;
@@ -14,7 +17,7 @@ void Node::ustawRodzajZasobu(std::size_t zasob, std::size_t cost, std::size_t ti
 }
 
 void Node::ustawWartosc(){
-    czasRazyKoszt = rodzajZasobu.second.first * rodzajZasobu.second.second;
+    czasRazyKoszt = rodzajZasobu.second.first + rodzajZasobu.second.second;
 }
 
 void Node::dodajZadanie(Node taskToAdd) {

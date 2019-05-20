@@ -9,10 +9,10 @@ individual::individual(embrion exembrion, individual::gen_dla_osobnika genDlaOso
                        individual::gen_dla_kanalu genDlaKanalu) {}
 
 void individual::ustawWartoscDoSelekcji(){ ////
-    for(int i = 0; i < sciezka_krytyczna.size() ; i++) {
-        fitness += sciezka_krytyczna[i].pobierzWartosc();;;
-    }
-    fitness += koszt*kanaly;
+//    for(int i = 0; i < sciezka_krytyczna.size() ; i++) {
+//        fitness += sciezka_krytyczna[i].pobierzWartosc();
+//    }
+//    fitness += koszt*kanaly;
 }
 
 void individual::mutacja() {}
@@ -28,3 +28,4 @@ void individual::aktualizacja_liczby_kanalow(){
         }
     }
 }
+void individual::stworz_sciezke_krytyczna(){}

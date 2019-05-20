@@ -11,6 +11,7 @@ private:
     std::vector <Node> zbior_zadan; /// Wektor symulucjacy drzewo
 public:
     embrion();//// Tworzy embrion z uzupelniony zbiorem_zadan
+    void evaluate();
 };
 
 
