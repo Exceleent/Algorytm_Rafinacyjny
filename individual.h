@@ -14,14 +14,15 @@ class individual {
     typedef std::size_t koszt_kanalu;
 private:
     koszt_kanalu koszt; /// Zalezy od genu
-    wartosc_do_selekcji fitness = 0; /// Wartosc na podstawie ktore bedzie tworzy ranking
+    wartosc_do_selekcji fitness ; /// Wartosc na podstawie ktore bedzie tworzy ranking
     std::vector <Node> zbior_zadan; /// Wektor symulucjacy drzewo
     std::vector <Node> sciezka_krytyczna; /// Sciezka krytyczna
     std::vector <koszt_kanalu> krawedzie_na_sciezce_krytycznej; //// Kolejne krawedzie na sciezce krytycze
-    liczba_kanalow_komunikacyjnych kanaly =0; /// Liczba kanalow
+    liczba_kanalow_komunikacyjnych liczbaKanalowKomunikacyjnych ; /// Liczba kanalow
 public:
     individual(const individual& individual1); //// Copy constructor do skopiowania osobnika
     individual();
+    ~individual();
     void ustawWartoscDoSelekcji();  ////
     wartosc_do_selekcji pobierzWartoscDoSelekcji(); ////
     individual mutacja(); //// Mutacja losujemy jakies zadanie i zamieniamy zasob.

@@ -5,6 +5,12 @@
 #include "population.h"
 population::population(){
 }
+
+population::~population() {
+    aktualnaPopulacja.clear();
+    aktualnaPopulacja.shrink_to_fit();
+    najlepszyOsobnik = individual();
+}
 void population::stworzNajlepszegoOsobnika(){
     for(auto indiv : aktualnaPopulacja) {
         if(najlepszyOsobnik.pobierzWartoscDoSelekcji() < indiv.pobierzWartoscDoSelekcji()) najlepszyOsobnik = indiv;

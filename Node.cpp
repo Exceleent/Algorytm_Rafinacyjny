@@ -11,7 +11,23 @@ Node::Node(){
 Node::Node(Node::gen gen1)
 {}
 
-Node::Node(const Node &node){} /// Przekopiowanie noda..
+Node::Node(const Node &node){
+    gen_zadania = node.gen_zadania;
+    rodzajZasobu = node.rodzajZasobu;
+    nastepniki1 = node.nastepniki1;
+    krawedzie1 = node.krawedzie1;
+} /// Przekopiowanie noda..
+
+Node::~Node(){
+    gen_zadania = std::size_t{0};
+    rodzajZasobu.first = std::size_t {0};
+    rodzajZasobu.second.first = std::size_t {0};
+    rodzajZasobu.second.second = std::size_t {0};
+    nastepniki1.clear();
+    krawedzie1.clear();
+    nastepniki1.shrink_to_fit();
+    krawedzie1.shrink_to_fit();
+}
 
 void Node::dodajKrawedz(Node::wartosc_krawedzi krawedz){}
 
@@ -28,11 +44,11 @@ void Node::dodajNastepnika(const Node &nastepnik) {
 }
 
 Node::czas Node::pobierzCzas(){
-    return czas_wykonania_zadania;
+    return rodzajZasobu.second.second;
 }
 
 Node::koszt Node::pobierzkoszt() {
-    return koszt_wykonania_zadania;
+    return rodzajZasobu.second.first;
 }
 
 std::size_t Node::pobierzRodzajZasobu(){

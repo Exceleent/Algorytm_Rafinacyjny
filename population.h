@@ -20,6 +20,8 @@ private:
 
 public:
     population();
+    ~population();
+
     void stworzNajlepszegoOsobnika(); /// Tworzy aktualnie najlepszego osobnika
     void dodajOsobnika(const individual &individual); /// Dodaje osobnika do populacji
     individual zwrocNajlepszegoOsobnika(); //// Zwraca najlepszego osobnika np do wypisu

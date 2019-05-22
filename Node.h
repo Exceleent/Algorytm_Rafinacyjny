@@ -19,14 +19,13 @@ class Node {
 private:
     gen gen_zadania;
     rodzaj_zasobu rodzajZasobu;
-    czas czas_wykonania_zadania;
-    koszt koszt_wykonania_zadania;
     nastepniki nastepniki1;
     krawedzie krawedzie1;
 public:
     Node(); ///
-    Node(gen);
+    Node(gen);  /// Ustawi zasoby dla danego genu
     Node(const Node &node); //// Copy constructor, do tworzenia kopi osobnika..
+    ~Node();
     void dodajKrawedz(wartosc_krawedzi krawedz);
     wartosc_krawedzi pobierzKrawedzOIndexie(std::size_t index);
     void ustawRodzajZasobu(std::size_t zasob, std::size_t cost, std::size_t time);
