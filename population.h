@@ -21,9 +21,10 @@ private:
 public:
     population();
     void stworzNajlepszegoOsobnika(); /// Tworzy aktualnie najlepszego osobnika
-    void dodajOsobnika(individual individual); /// Dodaje osobnika do populacji
+    void dodajOsobnika(const individual &individual); /// Dodaje osobnika do populacji
     individual zwrocNajlepszegoOsobnika(); //// Zwraca najlepszego osobnika np do wypisu
-    paraDoKrzyzowania selekcja(); //// Z Calej populacji wybiera pare i zwraca ja do krzyzowania
+    paraDoKrzyzowania selekcjaDoKrzyzowania(); //// Z Calej populacji wybiera pare i zwraca ja do krzyzowania
+    individual selekcjaDoMutacjiIKopiowania(); //// Z Calej populacji wybiera osobnika i zwraca go do mutacji/kopiowania
     paraPoKrzyzowania krzyzowanie(paraDoKrzyzowania paraDoKrzyzowania1); //// Krzyzuje dwojke i zwraca ich dzieci
 };
 

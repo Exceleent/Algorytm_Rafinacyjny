@@ -10,15 +10,20 @@ void population::stworzNajlepszegoOsobnika(){
         if(najlepszyOsobnik.pobierzWartoscDoSelekcji() < indiv.pobierzWartoscDoSelekcji()) najlepszyOsobnik = indiv;
     }
 }
-void population::dodajOsobnika(individual individual){
+void population::dodajOsobnika(const individual &individual){
     aktualnaPopulacja.push_back(individual);
 }
 individual population::zwrocNajlepszegoOsobnika() {
     return individual();
 }
-population::paraDoKrzyzowania population::selekcja() {
+population::paraDoKrzyzowania population::selekcjaDoKrzyzowania()  {
     return paraPoKrzyzowania(individual(),individual());
 }
+
+individual population::selekcjaDoMutacjiIKopiowania() {
+    return individual();
+}
+
 population::paraPoKrzyzowania population::krzyzowanie(population::paraDoKrzyzowania paraDoKrzyzowania1) {
     return paraPoKrzyzowania(individual(),individual());
 

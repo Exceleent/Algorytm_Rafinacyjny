@@ -4,35 +4,42 @@
 
 #include "Node.h"
 
-void Node::dodajKrawedz(){}
+Node::Node(){
 
-Node::wartosc_krawedzi Node::wyswietlKrawedzOIndexie(std::size_t index){}
-
-void Node::ustawZadanie(rodzaj_zadania rodzajZadania1) {
-    rodzajZadania = rodzajZadania1;
 }
+
+Node::Node(Node::gen gen1)
+{}
+
+Node::Node(const Node &node){} /// Przekopiowanie noda..
+
+void Node::dodajKrawedz(Node::wartosc_krawedzi krawedz){}
+
+Node::wartosc_krawedzi Node::pobierzKrawedzOIndexie(std::size_t index){return 0;}
+
 
 void Node::ustawRodzajZasobu(std::size_t zasob, std::size_t cost, std::size_t time){
     rodzajZasobu = std::pair<std::size_t,std::pair<std::size_t,std::size_t>>(zasob,std::pair<std::size_t,std::size_t>(cost,time));
 }
 
-void Node::ustawWartosc(){
-    czasRazyKoszt = rodzajZasobu.second.first + rodzajZasobu.second.second;
+
+void Node::dodajNastepnika(const Node &nastepnik) {
+    nastepniki1.push_back(nastepnik);
 }
 
-void Node::dodajZadanie(Node taskToAdd) {
-    nastepniki1.push_back(taskToAdd);
+Node::czas Node::pobierzCzas(){
+    return czas_wykonania_zadania;
 }
 
-Node::czas_razy_koszt Node::pobierzWartosc(){
-    return czasRazyKoszt;
+Node::koszt Node::pobierzkoszt() {
+    return koszt_wykonania_zadania;
 }
 
 std::size_t Node::pobierzRodzajZasobu(){
     return rodzajZasobu.first;
 }
 
-Node Node::pobierzNastepnik(std::size_t index) {
+Node Node::pobierzNastepnikOIndexie(std::size_t index) {
     return nastepniki1[index];
 }
 

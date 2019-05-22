@@ -7,6 +7,11 @@
 #include "Node.h"
 
 class embrion {
+
+    /////// Tutaj trzeba jeszcze przygotowac wszystkie stale zmienne...
+    ///// 1. Prawdopodobienstwa
+    ///// 2. Tablice z zasobami, kosztem i czasem
+    ///// 3. Graf wczytany z pliku
 private:
     std::vector <Node> zbior_zadan; /// Wektor symulucjacy drzewo
 public:
