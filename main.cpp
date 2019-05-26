@@ -1,6 +1,10 @@
 #include <iostream>
+#include "embrion.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    embrion emb = embrion::getembrion();
+    emb.print();
+
+   // std::cout << "Hello, World!" << std::endl;
     return 0;
 }

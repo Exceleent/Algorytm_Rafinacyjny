@@ -8,22 +8,23 @@
 #include <vector>
 
 class Node {
-    typedef std::size_t gen;
+public:
+    typedef std::size_t numer_zadania;
     typedef std::size_t wartosc_krawedzi;
-    typedef std::pair<std::size_t,std::pair<std::size_t,std::size_t>> rodzaj_zasobu; /// numer zadania, koszt oraz czas(dla przy danym zasobie)
+    typedef std::pair<std::size_t,std::pair<std::size_t,std::size_t>> rodzaj_zasobu; /// rodzaj zasobu, koszt oraz czas(dla przy danym zasobie)
     typedef std::vector<Node> nastepniki;
     typedef std::vector<wartosc_krawedzi > krawedzie;
     typedef std::size_t czas;
     typedef std::size_t koszt;
 
 private:
-    gen gen_zadania;
+    numer_zadania numerZadania;
     rodzaj_zasobu rodzajZasobu;
     nastepniki nastepniki1;
     krawedzie krawedzie1;
 public:
     Node(); ///
-    Node(gen);  /// Ustawi zasoby dla danego genu
+    Node(std::size_t);  /// Ustawia numer zadania w wezle reprezentujacym zadanie
     Node(const Node &node); //// Copy constructor, do tworzenia kopi osobnika..
     ~Node();
     void dodajKrawedz(wartosc_krawedzi krawedz);
@@ -34,6 +35,7 @@ public:
     koszt pobierzkoszt();
     std::size_t pobierzRodzajZasobu();
     std::size_t pobierzIloscNastepnikow();
+    std::size_t pobierzNumerZadania();
     Node pobierzNastepnikOIndexie(std::size_t index);
 };
 

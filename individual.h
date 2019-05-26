@@ -7,17 +7,18 @@
 #include "embrion.h"
 
 class individual {
+public:
     typedef std::size_t gen_dla_osobnika;
     typedef std::size_t gen_dla_kanalu;
     typedef double wartosc_do_selekcji;
     typedef std::size_t liczba_kanalow_komunikacyjnych;
-    typedef std::size_t koszt_kanalu;
+
 private:
-    koszt_kanalu koszt; /// Zalezy od genu
+    embrion::kosztKanalu koszt; /// Zalezy od genu
     wartosc_do_selekcji fitness ; /// Wartosc na podstawie ktore bedzie tworzy ranking
     std::vector <Node> zbior_zadan; /// Wektor symulucjacy drzewo
     std::vector <Node> sciezka_krytyczna; /// Sciezka krytyczna
-    std::vector <koszt_kanalu> krawedzie_na_sciezce_krytycznej; //// Kolejne krawedzie na sciezce krytycze
+    std::vector <embrion::kosztKanalu > krawedzie_na_sciezce_krytycznej; //// Kolejne krawedzie na sciezce krytycze
     liczba_kanalow_komunikacyjnych liczbaKanalowKomunikacyjnych ; /// Liczba kanalow
 public:
     individual(const individual& individual1); //// Copy constructor do skopiowania osobnika

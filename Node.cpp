@@ -8,18 +8,18 @@ Node::Node(){
 
 }
 
-Node::Node(Node::gen gen1)
-{}
+Node::Node(std::size_t numerZadania1)
+{numerZadania = numerZadania1;}
 
 Node::Node(const Node &node){
-    gen_zadania = node.gen_zadania;
+    numerZadania = node.numerZadania;
     rodzajZasobu = node.rodzajZasobu;
     nastepniki1 = node.nastepniki1;
     krawedzie1 = node.krawedzie1;
 } /// Przekopiowanie noda..
 
 Node::~Node(){
-    gen_zadania = std::size_t{0};
+    numerZadania = std::size_t {0};
     rodzajZasobu.first = std::size_t {0};
     rodzajZasobu.second.first = std::size_t {0};
     rodzajZasobu.second.second = std::size_t {0};
@@ -29,9 +29,11 @@ Node::~Node(){
     krawedzie1.shrink_to_fit();
 }
 
-void Node::dodajKrawedz(Node::wartosc_krawedzi krawedz){}
+void Node::dodajKrawedz(Node::wartosc_krawedzi krawedz){
+    krawedzie1.push_back(krawedz);
+}
 
-Node::wartosc_krawedzi Node::pobierzKrawedzOIndexie(std::size_t index){return 0;}
+Node::wartosc_krawedzi Node::pobierzKrawedzOIndexie(std::size_t index){return krawedzie1.at(index);}
 
 
 void Node::ustawRodzajZasobu(std::size_t zasob, std::size_t cost, std::size_t time){
@@ -56,11 +58,12 @@ std::size_t Node::pobierzRodzajZasobu(){
 }
 
 Node Node::pobierzNastepnikOIndexie(std::size_t index) {
-    return nastepniki1[index];
+    return nastepniki1.at(index);
 }
 
 std::size_t Node::pobierzIloscNastepnikow(){
     return nastepniki1.size();
-
-
+}
+std::size_t Node::pobierzNumerZadania(){
+    return numerZadania;
 }
