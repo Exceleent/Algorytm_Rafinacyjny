@@ -9,7 +9,7 @@
 
 class Node {
 public:
-    typedef std::size_t numer_zadania;
+    typedef int numer_zadania;
     typedef std::size_t wartosc_krawedzi;
     typedef std::pair<std::size_t,std::pair<std::size_t,std::size_t>> rodzaj_zasobu; /// rodzaj zasobu, koszt oraz czas(dla przy danym zasobie)
     typedef std::vector<Node> nastepniki;
@@ -35,7 +35,7 @@ public:
     koszt pobierzkoszt();
     std::size_t pobierzRodzajZasobu();
     std::size_t pobierzIloscNastepnikow();
-    std::size_t pobierzNumerZadania();
+    Node::numer_zadania pobierzNumerZadania();
     Node pobierzNastepnikOIndexie(std::size_t index);
 };
 

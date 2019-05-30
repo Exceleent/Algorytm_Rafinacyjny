@@ -3,8 +3,9 @@
 
 int main() {
     embrion emb = embrion::getembrion();
-    emb.print();
+    emb.wydrukujListeSasiedztwa();
+    emb.zamienListeSasiedztwaNaZbiorZadan();
 
-   // std::cout << "Hello, World!" << std::endl;
+    std::cout << "Hello, World!" << std::endl;
     return 0;
 }

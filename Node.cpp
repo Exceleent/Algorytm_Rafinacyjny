@@ -64,6 +64,6 @@ Node Node::pobierzNastepnikOIndexie(std::size_t index) {
 std::size_t Node::pobierzIloscNastepnikow(){
     return nastepniki1.size();
 }
-std::size_t Node::pobierzNumerZadania(){
+Node::numer_zadania Node::pobierzNumerZadania(){
     return numerZadania;
 }
