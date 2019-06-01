@@ -51,6 +51,7 @@ private:
     embrion();//// Tworzy embrion z uzupelniony zbiorem_zadan
 
 public:
+    void zamienZbiorZadanNaListeSasiedztwa();
     void wydrukujListeSasiedztwa();
     void zamienListeSasiedztwaNaZbiorZadan();
     void print();

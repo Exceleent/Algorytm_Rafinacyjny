@@ -16,10 +16,25 @@ public:
 private:
     embrion::kosztKanalu koszt; /// Zalezy od genu
     wartosc_do_selekcji fitness ; /// Wartosc na podstawie ktore bedzie tworzy ranking
-    std::vector <Node> zbior_zadan; /// Wektor symulucjacy drzewo
+    std::vector <Node> zbiorZadan; /// Wektor symulucjacy drzewo
     std::vector <Node> sciezka_krytyczna; /// Sciezka krytyczna
     std::vector <embrion::kosztKanalu > krawedzie_na_sciezce_krytycznej; //// Kolejne krawedzie na sciezce krytycze
     liczba_kanalow_komunikacyjnych liczbaKanalowKomunikacyjnych ; /// Liczba kanalow
+    std::vector<Node::numer_zadania> listaSasiedztwa;
+    void zamienListeSasiedztwaNaZbiorZadan();
+    void zamienZbiorZadanNaListeSasiedztwa();
+    void zwiekszIndeks(std::size_t & indeks);
+    void przejdzDoNastepnegoElementuWLiscie(std::size_t & indeksLokalny , std::size_t & indeksGlobalny);
+    void wylaczDodawanieZadan(bool & dodawanie);
+    void wlaczDodawanieZadan(bool & dodaj);
+    void ustawIndeksNaPrawidlowyElement(std::size_t & indeks );
+    void wyczyscStos(std::stack<std::size_t > &stack);
+    bool czyDodajemyZadania(bool dodaj);
+    bool WczytanoNawiasOtwierajacy(std::size_t indeks);
+    bool WczytanoNawiasZamykajacy(std::size_t indeks);
+
+
+
 public:
     individual(const individual& individual1); //// Copy constructor do skopiowania osobnika
     individual();
@@ -31,6 +46,7 @@ public:
     individual createindividual(const embrion &exembrion,gen_dla_osobnika genDlaOsobnika,gen_dla_kanalu genDlaKanalu);  //// Na podstawie embrionu i rodzaju genu tworzy osobnika, ustawiamy koszt kanalu wypelniamy zbior zadan
     void stworz_sciezke_krytyczna(); //// Tworzy sciezke Krytyczna
     void aktualizacja_liczby_kanalow(); ////
+
 };
 
 

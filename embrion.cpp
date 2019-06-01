@@ -77,6 +77,35 @@ void embrion::zamienListeSasiedztwaNaZbiorZadan() {
     }
 }
 
+void embrion::zamienZbiorZadanNaListeSasiedztwa(){
+    std::size_t indeksDoZamkniecia = 0;
+    listaSasiedztwa.clear();
+    listaSasiedztwa.shrink_to_fit();
+        std::cout << zbiorZadan.at(0).pobierzNumerZadania();
+        std::cout << "\n";
+        listaSasiedztwa.push_back(zbiorZadan.at(0).pobierzNumerZadania());
+    for(auto zadanie : zbiorZadan) {
+        if(zadanie.pobierzIloscNastepnikow() > 0) {
+             auto indeks = std::find(listaSasiedztwa.rbegin(),listaSasiedztwa.rend(),zadanie.pobierzNumerZadania());
+             auto baseindeks =  indeks.base() ;
+                listaSasiedztwa.insert(baseindeks  ,-2);
+            for(int i = zadanie.pobierzIloscNastepnikow()-1 ; i >= 0 ; i--) {
+                  indeks = std::find(listaSasiedztwa.rbegin(),listaSasiedztwa.rend(),zadanie.pobierzNumerZadania());
+                   baseindeks =  indeks.base() ;
+                listaSasiedztwa.insert(baseindeks ,zadanie.pobierzNastepnikOIndexie(i).pobierzNumerZadania());
+            }
+            indeks = std::find(listaSasiedztwa.rbegin(),listaSasiedztwa.rend(),zadanie.pobierzNumerZadania());
+            baseindeks =  indeks.base() ;
+            listaSasiedztwa.insert(baseindeks,-1);
+        }
+    }
+    for(auto k : listaSasiedztwa) {
+        std::cout << k << " ";
+    }
+
+}
+
+
 void embrion::uzupelnijListeSasiedztwa(std::ifstream &file) {
     Node::numer_zadania nodeValue = 0;
     std::string lineFromFile{};
