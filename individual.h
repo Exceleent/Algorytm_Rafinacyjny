@@ -21,8 +21,9 @@ private:
     std::vector <embrion::kosztKanalu > krawedzie_na_sciezce_krytycznej; //// Kolejne krawedzie na sciezce krytycze
     liczba_kanalow_komunikacyjnych liczbaKanalowKomunikacyjnych ; /// Liczba kanalow
     std::vector<Node::numer_zadania> listaSasiedztwa;
-    void zamienListeSasiedztwaNaZbiorZadan();
-    void zamienZbiorZadanNaListeSasiedztwa();
+
+    std::size_t liczbaZasobowDlaZadaniaONumerze(std::size_t index);
+    void losowyZasobDlaZadania(Node & n);
     void zwiekszIndeks(std::size_t & indeks);
     void przejdzDoNastepnegoElementuWLiscie(std::size_t & indeksLokalny , std::size_t & indeksGlobalny);
     void wylaczDodawanieZadan(bool & dodawanie);
@@ -36,16 +37,18 @@ private:
 
 
 public:
-    individual(const individual& individual1); //// Copy constructor do skopiowania osobnika
-    individual();
-    ~individual();
+    individual(const individual& individual1); //// Zrobione
+    individual();   //// Zrobione
+    ~individual();  //// Zbrobione
     void ustawWartoscDoSelekcji();  ////
     wartosc_do_selekcji pobierzWartoscDoSelekcji(); ////
     individual mutacja(); //// Mutacja losujemy jakies zadanie i zamieniamy zasob.
-    individual skopiuj(); //// Przenosi kopie osobnika do nowego pokolenia bez zmian.
+    individual skopiuj(); //// zrobione
     individual createindividual(const embrion &exembrion,gen_dla_osobnika genDlaOsobnika,gen_dla_kanalu genDlaKanalu);  //// Na podstawie embrionu i rodzaju genu tworzy osobnika, ustawiamy koszt kanalu wypelniamy zbior zadan
     void stworz_sciezke_krytyczna(); //// Tworzy sciezke Krytyczna
     void aktualizacja_liczby_kanalow(); ////
+    void zamienListeSasiedztwaNaZbiorZadan();
+    void zamienZbiorZadanNaListeSasiedztwa();
 
 };
 

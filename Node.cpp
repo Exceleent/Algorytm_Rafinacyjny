@@ -36,6 +36,10 @@ void Node::dodajKrawedz(Node::wartosc_krawedzi krawedz){
 Node::wartosc_krawedzi Node::pobierzKrawedzOIndexie(std::size_t index){return krawedzie1.at(index);}
 
 
+void Node::ustawNumerZadania(std::size_t numer) {
+    numerZadania  = numer;
+}
+
 void Node::ustawRodzajZasobu(std::size_t zasob, std::size_t cost, std::size_t time){
     rodzajZasobu = std::pair<std::size_t,std::pair<std::size_t,std::size_t>>(zasob,std::pair<std::size_t,std::size_t>(cost,time));
 }

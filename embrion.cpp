@@ -7,10 +7,16 @@
 #include <random>
 std::vector<std::vector<Node::rodzaj_zasobu>> embrion::zasoby;
 std::vector<std::pair<embrion::kosztKanalu,embrion::przepustowoscKanalu >> embrion::kanaly;
+ std::vector<Node::rodzaj_zasobu> embrion::zasobyNajszybsze;
+ std::vector<Node::rodzaj_zasobu> embrion::zasobyNajtansze;
+ std::vector<Node::rodzaj_zasobu> embrion::zasobyNajmniejszyIloczynCzasuIKosztu;
+
+
 
 bool embrion::WczytanoNawiasOtwierajacy(std::size_t indeks){
     return listaSasiedztwa[indeks] == -1;
 }
+
 
 bool embrion::WczytanoNawiasZamykajacy(std::size_t indeks) {
     return listaSasiedztwa[indeks] == -2;
@@ -125,17 +131,12 @@ void embrion::wydrukujListeSasiedztwa(){
     }
 }
 embrion::embrion() {
-//    std::ifstream mystream ("tree.txt");
-//    std::ifstream mystream2 ("zasoby.txt");
-//    std::ifstream mystream3 ("kanaly.txt");
-//    uzupelnijZbiorZadan(mystream);
-//    uzupelnijZasoby(mystream2);
-//    uzupelnijKanaly(mystream3);
-//    for(int i = 0 ; i < liczbaZadanWGrafie() ;i++){
-//        losowyZasobDlaZadania(zbiorZadan.at(i));
-//    }
-    std::ifstream mystream ("lista.txt");
-    uzupelnijListeSasiedztwa(mystream);
+    std::ifstream mystream ("tree.txt");
+    std::ifstream mystream2 ("zasoby.txt");
+    std::ifstream mystream3 ("kanaly.txt");
+    uzupelnijZbiorZadan(mystream);
+    uzupelnijZasoby(mystream2);
+    uzupelnijKanaly(mystream3);
 }
 
 void embrion::evaluate(){}  /// Funkckja odpalajaca ewolucje...
@@ -195,6 +196,34 @@ void embrion::uzupelnijZasoby(std::ifstream &file) {
     }
 }
 
+void embrion::uzupelnijZasobNajtanszy(){
+    embrion::zasobyNajszybsze.reserve(embrion::zasoby.size());
+    for(int i = 0 ; i < embrion::zasoby.size() ; i++) {
+        for(int j = 0 ; j < embrion::zasoby[i].size() ; j++) {
+          if(j == 0)  embrion::zasobyNajtansze.insert(std::next(embrion::zasobyNajtansze.begin(),i),embrion::zasoby[i][j]);
+          if(embrion::zasobyNajtansze[i].second.first > embrion::zasoby[i][j].second.first) embrion::zasobyNajtansze[i] = embrion::zasoby[i][j];
+        }
+    }
+}
+void embrion::uzupelnijZasobNajszybszy(){
+    embrion::zasobyNajszybsze.reserve(embrion::zasoby.size());
+    for(int i = 0 ; i < embrion::zasoby.size() ; i++) {
+        for(int j = 0 ; j < embrion::zasoby[i].size() ; j++) {
+            if(j == 0)  embrion::zasobyNajszybsze.insert(std::next(embrion::zasobyNajszybsze.begin(),i),embrion::zasoby[i][j]);
+            if(embrion::zasobyNajszybsze[i].second.second < embrion::zasoby[i][j].second.second) embrion::zasobyNajszybsze[i] = embrion::zasoby[i][j];
+        }
+    }
+}
+void embrion::uzupelnijZasobKtoregoIloczynNajmniejszy(){
+    for(int i = 0 ; i < embrion::zasoby.size() ; i++) {
+        for(int j = 0 ; j < embrion::zasoby[i].size() ; j++) {
+            if(j == 0)  embrion::zasobyNajmniejszyIloczynCzasuIKosztu.insert(std::next(embrion::zasobyNajmniejszyIloczynCzasuIKosztu.begin(),i),embrion::zasoby[i][j]);
+            if(embrion::zasobyNajmniejszyIloczynCzasuIKosztu[i].second.first * embrion::zasobyNajmniejszyIloczynCzasuIKosztu[i].second.second
+                        > embrion::zasoby[i][j].second.first * embrion::zasoby[i][j].second.second) embrion::zasobyNajszybsze[i] = embrion::zasoby[i][j];
+        }
+    }
+}
+
 
 void embrion::uzupelnijKanaly(std::ifstream &file){
     std::string lineFromFile{};
@@ -217,7 +246,7 @@ void embrion::pushResourcesTaskInToEmbrionResource(std::vector<Node::rodzaj_zaso
     zasoby.push_back(zasobyZadania);
 }
 
-std::size_t embrion::liczbaZadanWGrafie(){
+std::size_t embrion::liczbaZadanWGrafie() const{
     return zbiorZadan.size();
 }
 
@@ -230,11 +259,20 @@ int numerZasobu =losowyZasobGenerator(gen);
 n.ustawRodzajZasobu(zasoby[numerZadania][numerZasobu].first,zasoby[numerZadania][numerZasobu].second.first,zasoby[numerZadania][numerZasobu].second.second);
 }
 
-
-
 std::size_t embrion::liczbaZasobowDlaZadaniaONumerze(std::size_t index){
     return zasoby.at(index).size();
 }
+
+std::vector<Node>  embrion::zwrocZbiorZadan() const{
+    return zbiorZadan;
+}
+
+
+std::vector<Node::numer_zadania >  embrion::zwrocListeSasiedztwa() const{
+    return listaSasiedztwa;
+}
+
+
 
 
 

@@ -27,6 +27,7 @@ public:
     Node(std::size_t);  /// Ustawia numer zadania w wezle reprezentujacym zadanie
     Node(const Node &node); //// Copy constructor, do tworzenia kopi osobnika..
     ~Node();
+    void ustawNumerZadania(std::size_t);
     void dodajKrawedz(wartosc_krawedzi krawedz);
     wartosc_krawedzi pobierzKrawedzOIndexie(std::size_t index);
     void ustawRodzajZasobu(std::size_t zasob, std::size_t cost, std::size_t time);
@@ -37,6 +38,8 @@ public:
     std::size_t pobierzIloscNastepnikow();
     Node::numer_zadania pobierzNumerZadania();
     Node pobierzNastepnikOIndexie(std::size_t index);
+    void usunNastepniki();
+    void usunKrawedzie();
 };
 
 

@@ -88,7 +88,6 @@ void individual::zamienZbiorZadanNaListeSasiedztwa(){
     std::size_t indeksDoZamkniecia = 0;
     listaSasiedztwa.clear();
     listaSasiedztwa.shrink_to_fit();
-    std::cout << zbiorZadan.at(0).pobierzNumerZadania();
     std::cout << "\n";
     listaSasiedztwa.push_back(zbiorZadan.at(0).pobierzNumerZadania());
     for(auto zadanie : zbiorZadan) {
@@ -125,20 +124,46 @@ void individual::zamienZbiorZadanNaListeSasiedztwa(){
 
  individual individual::createindividual(const embrion &exembrion, individual::gen_dla_osobnika genDlaOsobnika,
                        individual::gen_dla_kanalu genDlaKanalu) {
+     std::vector <Node> temporary = exembrion.zwrocZbiorZadan();
+     individual *nowy_osobnik = new individual();
+     std::random_device rd;  //Will be used to obtain a seed for the random number engine
+     std::mt19937 gen(rd());
+     std::uniform_int_distribution<int> losoweZadanieGenerator = std::uniform_int_distribution(0, static_cast<int>((exembrion.liczbaZadanWGrafie())) -1);
+     int liczbaZadan = losoweZadanieGenerator(gen);
+     for(int i = 0 ; i < liczbaZadan ; i++) {
+         Node *zad1 = new Node();
+     }
 
-    return individual();
-}   //// Na podstawie  embrionu (grafu) utworz jego podgraf, rodzaj zasobu przydzielony do zadan jest zdeterminowany przez gen_dla_osobnika(wyboru zasobow) , rodzaj kanalow komunikacyjnych
-    /// zdefinoway przez gen_dla_kanalu.....
 
-void individual::ustawWartoscDoSelekcji(){} /// Ustalenie wartosci do selekcji
+    nowy_osobnik->zbiorZadan = exembrion.zwrocZbiorZadan();
+    nowy_osobnik->listaSasiedztwa = exembrion.zwrocListeSasiedztwa();
 
-individual individual::mutacja() { return  individual();} //// Mutacja zamienia zamienia i zwraca nowego osobnika ktory bedzie dodany do nowego pokolenia
+    return *nowy_osobnik;
+}
 
-individual individual::skopiuj() {return individual(*this);} //// Przenosi osobnika do nowego pokolenia bez zmian
+void individual::ustawWartoscDoSelekcji(){}
+
+
+individual individual::mutacja() {
+    individual *zmutowany = new individual(*this);
+    std::random_device rd;  //Will be used to obtain a seed for the random number engine
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<int> losoweZadanieGenerator = std::uniform_int_distribution(0, static_cast<int>((zbiorZadan.size())) -1);
+    std::size_t losoweZadanie = losoweZadanieGenerator(gen);
+    losowyZasobDlaZadania(zmutowany->zbiorZadan.at(losoweZadanie));
+    return *zmutowany;
+}
+
+
+individual individual::skopiuj() {
+    return individual(*this);
+}
+
 
 individual::wartosc_do_selekcji individual::pobierzWartoscDoSelekcji() {
     return fitness;
 }
+
 
 void individual::aktualizacja_liczby_kanalow(){
     for(int i = 0 ; i < zbiorZadan.size() ; i++) {
@@ -147,4 +172,21 @@ void individual::aktualizacja_liczby_kanalow(){
         }
     }
 }
+
+
 void individual::stworz_sciezke_krytyczna(){}
+
+
+std::size_t individual::liczbaZasobowDlaZadaniaONumerze(std::size_t index){
+    return embrion::zasoby.at(index).size();
+}
+
+
+void individual::losowyZasobDlaZadania(Node & n){
+    std::random_device rd;  //Will be used to obtain a seed for the random number engine
+    std::mt19937 gen(rd());
+    std::size_t numerZadania = n.pobierzNumerZadania();
+    std::uniform_int_distribution<int>losowyZasobGenerator = std::uniform_int_distribution(0, static_cast<int>(liczbaZasobowDlaZadaniaONumerze(numerZadania))-1);
+    int numerZasobu =losowyZasobGenerator(gen);
+    n.ustawRodzajZasobu(embrion::zasoby[numerZadania][numerZasobu].first,embrion::zasoby[numerZadania][numerZasobu].second.first,embrion::zasoby[numerZadania][numerZasobu].second.second);
+}

@@ -1,12 +1,10 @@
 #include <iostream>
 #include "embrion.h"
+#include "individual.h"
 
 int main() {
     embrion emb = embrion::getembrion();
-    emb.wydrukujListeSasiedztwa();
-    emb.zamienListeSasiedztwaNaZbiorZadan();
-    emb.zamienZbiorZadanNaListeSasiedztwa();
-
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
+    //emb.wydrukujListeSasiedztwa();
+    //emb.zamienZbiorZadanNaListeSasiedztwa();
+        return 0;
 }
